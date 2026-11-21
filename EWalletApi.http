@@ -1,0 +1,55 @@
+@host = https://localhost:7185
+
+### Buat akun Budi
+POST {{host}}/api/akun
+Content-Type: application/json
+
+{
+  "namaPemilik": "Budi",
+  "nomorHp": "081111111111",
+  "saldoAwal": 100000
+}
+
+### Buat akun Ani
+POST {{host}}/api/akun
+Content-Type: application/json
+
+{
+  "namaPemilik": "Ani",
+  "nomorHp": "082222222222",
+  "saldoAwal": 0
+}
+
+### Daftar akun (kalau endpoint GET /api/akun sudah ditambahkan)
+GET {{host}}/api/akun
+
+### Isi saldo akun 1
+POST {{host}}/api/akun/1/isi-saldo
+Content-Type: application/json
+
+{
+  "jumlah": 200000,
+  "kunciIdempotensi": "isi-001",
+  "keterangan": "Isi saldo via minimarket"
+}
+
+### Transfer akun 1 ke akun 2
+POST {{host}}/api/transfer
+Content-Type: application/json
+
+{
+  "akunAsalId": 1,
+  "akunTujuanId": 2,
+  "jumlah": 10000,
+  "kunciIdempotensi": "uji-001",
+  "keterangan": "Bayar makan"
+}
+
+### Cek saldo akun 1
+GET {{host}}/api/akun/1/saldo
+
+### Cek saldo akun 2
+GET {{host}}/api/akun/2/saldo
+
+### Mutasi akun 2
+GET {{host}}/api/akun/2/mutasi
